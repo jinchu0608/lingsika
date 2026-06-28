@@ -4,8 +4,7 @@ import HeroCover from "./components/HeroCover.vue"
 import GalleryPair from "./components/GalleryPair.vue"
 import AuthorBio from "./components/AuthorBio.vue"
 import {
-  getCoverImage,
-  getCoverText,
+  getCover,
   getGalleryItems,
   getAuthorAvatar,
   getAuthorInfo,
@@ -18,17 +17,16 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const [img, txt, items, avatar, info] = await Promise.all([
-      getCoverImage(),
-      getCoverText(),
+    const [cover, items, avatar, info] = await Promise.all([
+      getCover(),
       getGalleryItems(),
       getAuthorAvatar(),
       getAuthorInfo(),
     ])
     hero.value = {
-      bgImage: img.image_url,
-      title: txt.title,
-      subtitle: txt.subtitle,
+      bgImage: cover.image_url,
+      title: cover.title,
+      subtitle: cover.subtitle,
     }
     galleryItems.value = items.map((i) => ({
       image: i.image_url,

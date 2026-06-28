@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CoverImage, CoverText, GalleryItem, AuthorAvatar, AuthorInfo
+from .models import CoverImage, GalleryItem, AuthorAvatar, AuthorInfo
 
 
 class CoverImageSerializer(serializers.ModelSerializer):
@@ -7,18 +7,12 @@ class CoverImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CoverImage
-        fields = ["id", "url", "file", "image_url"]
+        fields = ["id", "url", "file", "image_url", "title", "subtitle"]
 
     def get_image_url(self, obj):
         if obj.file:
             return obj.file.url
         return obj.url
-
-
-class CoverTextSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CoverText
-        fields = "__all__"
 
 
 class GalleryItemSerializer(serializers.ModelSerializer):

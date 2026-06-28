@@ -16,12 +16,8 @@ async function fetchJSON(url, options = {}) {
 
 /* ── 封面 ── */
 
-export function getCoverImage() {
-  return fetchJSON("/cover-image/");
-}
-
-export function getCoverText() {
-  return fetchJSON("/cover-text/");
+export function getCover() {
+  return fetchJSON("/cover/");
 }
 
 /* ── 作品 ── */

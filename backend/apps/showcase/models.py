@@ -2,7 +2,18 @@ from django.db import models
 
 
 class CoverImage(models.Model):
-    """封面背景图片（单例）"""
+    """封面设置（单例）"""
+    title = models.CharField(
+        max_length=200,
+        help_text="封面主标题",
+        default="影像集"
+    )
+    subtitle = models.CharField(
+        max_length=500,
+        help_text="封面副标题",
+        default="每一帧都是时光的标本",
+        blank=True
+    )
     file = models.ImageField(
         upload_to="covers/",
         blank=True,
@@ -16,33 +27,11 @@ class CoverImage(models.Model):
     )
 
     class Meta:
-        verbose_name = "封面图片"
-        verbose_name_plural = "封面图片"
+        verbose_name = "封面设置"
+        verbose_name_plural = "封面设置"
 
     def __str__(self):
-        return "封面背景图" + ("[本地]" if self.file else "[外链]")
-
-
-class CoverText(models.Model):
-    """封面标题与副标题（单例）"""
-    title = models.CharField(
-        max_length=200,
-        help_text="封面主标题",
-        default="影像集"
-    )
-    subtitle = models.CharField(
-        max_length=500,
-        help_text="封面副标题",
-        default="每一帧都是时光的标本",
-        blank=True
-    )
-
-    class Meta:
-        verbose_name = "封面文字"
-        verbose_name_plural = "封面文字"
-
-    def __str__(self):
-        return "封面文字内容"
+        return f"封面：{self.title}"
 
 
 class GalleryItem(models.Model):

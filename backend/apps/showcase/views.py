@@ -1,27 +1,18 @@
 from rest_framework import viewsets, generics
-from .models import CoverImage, CoverText, GalleryItem, AuthorAvatar, AuthorInfo
+from .models import CoverImage, GalleryItem, AuthorAvatar, AuthorInfo
 from .serializers import (
-    CoverImageSerializer, CoverTextSerializer, GalleryItemSerializer,
+    CoverImageSerializer, GalleryItemSerializer,
     AuthorAvatarSerializer, AuthorInfoSerializer
 )
 
 
-class CoverImageDetailView(generics.RetrieveUpdateAPIView):
-    """封面背景图（单例获取/更新）"""
+class CoverDetailView(generics.RetrieveUpdateAPIView):
+    """封面设置（单例获取/更新）"""
     queryset = CoverImage.objects.all()
     serializer_class = CoverImageSerializer
 
     def get_object(self):
         return CoverImage.objects.first()
-
-
-class CoverTextView(generics.RetrieveUpdateAPIView):
-    """封面文字（单例获取/更新）"""
-    queryset = CoverText.objects.all()
-    serializer_class = CoverTextSerializer
-
-    def get_object(self):
-        return CoverText.objects.first()
 
 
 class GalleryItemViewSet(viewsets.ModelViewSet):

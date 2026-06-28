@@ -6,8 +6,7 @@ router = DefaultRouter()
 router.register(r"gallery-items", views.GalleryItemViewSet, basename="gallery-item")
 
 urlpatterns = [
-    path("cover-image/", views.CoverImageDetailView.as_view(), name="cover-image"),
-    path("cover-text/", views.CoverTextView.as_view(), name="cover-text"),
+    path("cover/", views.CoverDetailView.as_view(), name="cover"),
     path("author-avatar/", views.AuthorAvatarView.as_view(), name="author-avatar"),
     path("author-info/", views.AuthorInfoView.as_view(), name="author-info"),
     path("", include(router.urls)),

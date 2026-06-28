@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CoverImage, CoverText, GalleryItem, AuthorAvatar, AuthorInfo
+from .models import CoverImage, GalleryItem, AuthorAvatar, AuthorInfo
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -18,22 +18,15 @@ class SingletonAdmin(admin.ModelAdmin):
 
 @admin.register(CoverImage)
 class CoverImageAdmin(SingletonAdmin):
-    list_display = ("url",)
-    fieldsets = (
-        ("封面背景图", {
-            "fields": ("url",),
-            "description": "设置封面背景图片，建议使用 1920×1080 分辨率的图片",
-        }),
-    )
-
-
-@admin.register(CoverText)
-class CoverTextAdmin(SingletonAdmin):
     list_display = ("title", "subtitle")
     fieldsets = (
+        ("封面图片", {
+            "fields": ("url", "file"),
+            "description": "封面背景图片（可上传本地文件或使用外部链接）",
+        }),
         ("封面文字", {
             "fields": ("title", "subtitle"),
-            "description": "设置封面标题与副标题",
+            "description": "封面标题与副标题",
         }),
     )
 
