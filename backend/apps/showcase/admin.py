@@ -31,13 +31,6 @@ class CoverImageAdmin(SingletonAdmin):
     )
 
 
-class GalleryItemInline(admin.TabularInline):
-    model = GalleryItem
-    extra = 0
-    fields = ("image", "title", "order", "is_active")
-    ordering = ("order",)
-
-
 @admin.register(GalleryItem)
 class GalleryItemAdmin(admin.ModelAdmin):
     list_display = ("title", "order", "is_active")
@@ -45,7 +38,8 @@ class GalleryItemAdmin(admin.ModelAdmin):
     list_filter = ("is_active",)
     fieldsets = (
         ("作品信息", {
-            "fields": ("image", "title", "description"),
+            "fields": ("file", "image", "title", "description"),
+            "description": "可上传本地图片或使用外部链接",
         }),
         ("设置", {
             "fields": ("order", "is_active"),
@@ -55,11 +49,11 @@ class GalleryItemAdmin(admin.ModelAdmin):
 
 @admin.register(AuthorAvatar)
 class AuthorAvatarAdmin(SingletonAdmin):
-    list_display = ("url",)
+    list_display = ("__str__",)
     fieldsets = (
         ("作者头像", {
-            "fields": ("url",),
-            "description": "设置作者头像图片链接",
+            "fields": ("file", "url"),
+            "description": "可上传本地图片或使用外部链接",
         }),
     )
 
