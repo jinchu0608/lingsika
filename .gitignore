@@ -1,0 +1,11 @@
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+*.egg-info/
+dist/
+.vite/
+*.local
+db.sqlite3
+frontend/node_modules/
