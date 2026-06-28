@@ -26,17 +26,17 @@ onMounted(async () => {
       getAuthorInfo(),
     ])
     hero.value = {
-      bgImage: img.url,
+      bgImage: img.image_url,
       title: txt.title,
       subtitle: txt.subtitle,
     }
     galleryItems.value = items.map((i) => ({
-      image: i.image,
+      image: i.image_url,
       title: i.title,
       description: i.description,
     }))
     bio.value = {
-      avatar: avatar.url,
+      avatar: avatar.image_url,
       name: info.name,
       description: info.description,
     }

@@ -3,6 +3,12 @@ from django.db import models
 
 class CoverImage(models.Model):
     """封面背景图片（单例）"""
+    file = models.ImageField(
+        upload_to="covers/",
+        blank=True,
+        null=True,
+        help_text="上传本地图片（优先于外部链接）"
+    )
     url = models.URLField(
         max_length=500,
         help_text="封面背景图片链接",
@@ -14,7 +20,7 @@ class CoverImage(models.Model):
         verbose_name_plural = "封面图片"
 
     def __str__(self):
-        return "封面背景图"
+        return "封面背景图" + ("[本地]" if self.file else "[外链]")
 
 
 class CoverText(models.Model):
@@ -41,6 +47,12 @@ class CoverText(models.Model):
 
 class GalleryItem(models.Model):
     """作品展示项"""
+    file = models.ImageField(
+        upload_to="gallery/",
+        blank=True,
+        null=True,
+        help_text="上传本地图片（优先于外部链接）"
+    )
     image = models.URLField(
         max_length=500,
         help_text="作品图片链接",
@@ -62,6 +74,12 @@ class GalleryItem(models.Model):
 
 class AuthorAvatar(models.Model):
     """作者头像（单例）"""
+    file = models.ImageField(
+        upload_to="avatars/",
+        blank=True,
+        null=True,
+        help_text="上传本地图片（优先于外部链接）"
+    )
     url = models.URLField(
         max_length=500,
         help_text="头像图片链接",
@@ -73,7 +91,7 @@ class AuthorAvatar(models.Model):
         verbose_name_plural = "作者头像"
 
     def __str__(self):
-        return "作者头像"
+        return "作者头像" + ("[本地]" if self.file else "[外链]")
 
 
 class AuthorInfo(models.Model):
